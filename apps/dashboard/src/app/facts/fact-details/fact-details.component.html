@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="currentFact.fact; else elseBlock">
+      <h1>{{ originalName }}</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <ng-template #elseBlock>Select A Fact</ng-template>
+  <form
+    [formGroup]="form"
+    #formDirective="ngForm"
+    (ngSubmit)="saveForm(formDirective)"
+  >
+    <mat-card-content>
+      <mat-form-field class="full-width" appearance="outline" floatlabel>
+        <mat-label>Fact</mat-label>
+        <input
+          matInput
+          placeholder="Fact"
+          formControlName="fact"
+          type="text"
+          name="fact"
+        />
+        <mat-error *ngIf="form.get('fact')">Required Field</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-button (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
